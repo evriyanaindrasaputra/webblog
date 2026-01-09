@@ -1,0 +1,36 @@
+---
+title: "AI Context Engineering: Level Up Your Context"
+publishedAt: "2025-02-14"
+summary: "How to effectively manage context windows and prompt engineering in the age of LLMs."
+tags: ["AI", "Engineering", "Prompting"]
+---
+
+# Introduction
+
+In the rapidly evolving landscape of Artificial Intelligence, **Context Engineering** has emerged as a critical skill for developers and prompt engineers alike. It goes beyond simple prompt crafting; it's about architecting the information flow to the model to maximize relevance, accuracy, and performance.
+
+```typescript
+function injectContext(prompt: string, context: string[]) {
+  return `Context:\n${context.join('\n')}\n\nTask: ${prompt}`;
+}
+```
+
+## Why Context Matters
+
+Large Language Models (LLMs) like GPT-4 and Gemini have fixed context windows. While these windows are growing (1M+ tokens), effectively utilizing this space is key.
+
+- **Relevance**: garbage in, garbage out.
+- **Cost**: More tokens = higher cost.
+- **Latency**: Large context takes longer to process.
+
+## Strategies
+
+### RAG (Retrieval Augmented Generation)
+
+Instead of stuffing the entire documentation into the prompt, use embeddings to retrieve only the relevant chunks.
+
+> "Context is worth 80 IQ points." - Alan Kay (probably not, but fits contexts)
+
+## Conclusion
+
+Mastering context engineering allows you to build more robust AI applications that feel "smart" and aware of the user's specific situation.

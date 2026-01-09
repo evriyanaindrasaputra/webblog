@@ -14,8 +14,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DevPortfolio - Product Engineer",
-  description: "A minimalist portfolio and blog for product engineers.",
+  title: "Evriyana Indra Saputra - Frontend Developer",
+  description: "A minimalist portfolio and blog for Evriyana Indra Saputra, a Frontend Developer based in Indonesia.",
+  openGraph: {
+    title: "Evriyana Indra Saputra - Frontend Developer",
+    description: "Building beautiful, functional, and user-friendly digital experiences.",
+    url: "https://evriyana.com", // Placeholder URL, update if real one exists
+    siteName: "Evriyana Indra Saputra",
+    images: [
+      {
+        url: "https://github.com/evriyanaindrasaputra.png", // Fallback to GitHub avatar for OG image
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evriyana Indra Saputra - Frontend Developer",
+    description: "Building beautiful, functional, and user-friendly digital experiences.",
+    creator: "@evriyana", // Placeholder handle
+    images: ["https://github.com/evriyanaindrasaputra.png"],
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider

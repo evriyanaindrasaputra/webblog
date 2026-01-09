@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
 
-## Getting Started
+A modern, Web3-inspired portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Shadcn UI
+- **Animations**: Framer Motion
+- **Content**: MDX for blog posts
+- **Package Manager**: pnpm
+
+## 📦 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- pnpm (recommended) or npm
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clone the repository
+git clone <your-repo-url>
+cd learn
+
+# Install dependencies
+pnpm install
+
+# Run development server
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js app router pages
+│   ├── about/             # About page
+│   ├── blog/              # Blog index and posts
+│   ├── projects/          # Projects showcase
+│   └── page.tsx           # Homepage
+├── components/            # Reusable components
+│   ├── ui/               # Shadcn UI components
+│   ├── code-window.tsx   # Code display component
+│   ├── navbar.tsx        # Navigation bar
+│   ├── project-card.tsx  # Project card component
+│   ├── site-footer.tsx   # Footer component
+│   └── web3-background.tsx # Animated background
+├── content/              # MDX blog posts
+│   └── posts/
+├── lib/                  # Utilities and helpers
+│   ├── constants.ts      # Shared constants
+│   ├── mdx.ts           # MDX utilities
+│   └── utils/
+│       └── reading-time.ts # Reading time calculator
+└── styles/              # Global styles
+```
 
-## Learn More
+## ✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Web3 Aesthetic**: Glassmorphism, gradient effects, and animated backgrounds
+- **Blog System**: MDX-powered blog with syntax highlighting and table of contents
+- **Reading Time**: Automatic reading time estimation for blog posts
+- **Smooth Scrolling**: Enhanced navigation experience
+- **Responsive Design**: Mobile-first approach
+- **SEO Optimized**: Meta tags, OpenGraph, and Twitter cards
+- **Dark Mode**: Built-in theme switching
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Available Scripts
 
-## Deploy on Vercel
+```bash
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm start        # Start production server
+pnpm lint         # Run ESLint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Adding Blog Posts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Create a new `.mdx` file in `src/content/posts/`:
+
+```mdx
+---
+title: "Your Post Title"
+publishedAt: "2026-01-09"
+summary: "Brief description"
+tags: ["tag1", "tag2"]
+---
+
+Your content here...
+```
+
+### Adding Projects
+
+Update `src/lib/constants.ts`:
+
+```typescript
+export const PROJECTS = [
+  {
+    title: "Project Name",
+    description: "Description",
+    tags: ["Tech1", "Tech2"],
+    link: "https://...",
+    githubLink: "https://github.com/...",
+    image: "https://...",
+  },
+];
+```
+
+## 📝 Code Quality
+
+This project follows DRY principles:
+- Shared utilities in `src/lib/`
+- Constants in `src/lib/constants.ts`
+- Reusable components in `src/components/`
+
+## 📄 License
+
+MIT
+
+## 👤 Author
+
+**Evriyana Indra Saputra**
+- GitHub: [@evriyanaindrasaputra](https://github.com/evriyanaindrasaputra)
+- LinkedIn: [evriyana](https://www.linkedin.com/in/evriyana/)
+- Email: eindrasap@gmail.com
