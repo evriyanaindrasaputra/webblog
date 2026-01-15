@@ -30,9 +30,7 @@ export const SKILLS = [
   "Pinia",
   "Vite",
   "Node.js",
-  "GraphQL",
   "Framer Motion",
-  "PostgreSQL",
   "Git",
   "Figma",
 ] as const;

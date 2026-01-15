@@ -10,15 +10,9 @@ import { SKILLS } from "@/lib/constants"
 const EXPERIENCE = [
   {
     role: "Frontend Developer",
-    company: "Tech Startup Inc.",
-    period: "2024 - Present",
-    description: "Building responsive web applications using React and Next.js. Implementing complex UI features and optimizing performance.",
-  },
-  {
-    role: "Junior Web Developer",
-    company: "Creative Agency",
-    period: "2023 - 2024",
-    description: "Collaborated with designers to translate Figma mockups into pixel-perfect code. Maintained and updated client websites.",
+    company: "Stechoq Robotika Indonesia",
+    period: "2021 - Present",
+    description: "Building responsive web applications using Vue.js. Implementing complex UI features and optimizing performance.",
   },
 ]
 
