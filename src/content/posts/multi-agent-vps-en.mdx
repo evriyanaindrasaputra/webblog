@@ -1,0 +1,134 @@
+---
+title: "I Built a Multi-Agent AI System on a $5 VPS — Here's What I Learned"
+publishedAt: "2026-02-25"
+summary: "Four AI agents, one cheap VPS, zero cost. How I set up a multi-agent AI system with OpenClaw — including one that sends daily Quran reflections to my mom."
+image: "/blog/multi-agent-vps/architecture.png"
+tags: ["AI", "OpenClaw", "Multi-Agent", "DevOps"]
+---
+
+Last weekend, I set up four AI agents on a single cheap VPS. They talk to me on Telegram, talk to my mom on WhatsApp, write blog posts, build landing pages, and coordinate with each other — all running on free-tier models. It took two days, a lot of YAML editing, and a few spectacular failures. Here's the whole story.
+
+## Why Would Anyone Do This?
+
+I'd been using AI assistants the normal way — one chat window, one conversation, one model. It works, but it felt like hiring one person to be your secretary, therapist, engineer, and writer all at once. What if I could split those roles?
+
+When I found [OpenClaw](https://openclaw.ai), an open-source AI assistant framework, something clicked. OpenClaw lets you define multiple agents, each with their own personality, connected to different messaging channels. I didn't need a cluster or a beefy GPU box. I just needed a Linux VPS and some API keys.
+
+Two days later — February 23 and 24, 2026 — I had a working system.
+
+## Meet the Agents
+
+I created four agents, each with a distinct role and personality:
+
+![Agent Cards](/blog/multi-agent-vps/agent-cards.png)
+
+**Avicenna** 🤝 is my main assistant and coordinator, named after the Persian polymath Ibnu Sina. Casual, helpful, a natural conversationalist. He's connected to both Telegram and WhatsApp, and he's the one I talk to most. Think of him as the team lead.
+
+**Rahma** 🤲 is a spiritual companion built specifically for my mother. She speaks gentle, patient Bahasa Indonesia and sends daily Quran *tadabbur* (reflections) every morning at 5 AM via WhatsApp. This one is personal — my mom isn't technical, but she can open a WhatsApp message.
+
+**Rewind** ✍️ is my blog writer and brainstormer. Creative, sharp, adaptive. When I need to think through content ideas or draft a post (like this one), Rewind is who I turn to.
+
+**Conan** 🔧 is a software engineer and DevOps agent. Resourceful, inventive, loves building things. He handles coding tasks, GitHub integration, and anything that requires getting his hands dirty in a terminal.
+
+The key insight: each agent has its own `SOUL.md` and `IDENTITY.md` files that define *who they are*, not just what they do. Rahma doesn't just "answer Islamic questions" — she's patient, gentle, and speaks to my mom the way a kind companion would. These personality files matter more than I expected.
+
+## The Model Strategy (AKA How I Pay $0)
+
+Here's where it gets interesting. Running four agents sounds expensive, but my actual cost so far? Zero dollars on model inference.
+
+The secret: **Google Antigravity OAuth**. It gives you free access to powerful models through a single Google account — no API keys, no credit cards, no usage limits that matter for personal use.
+
+```yaml
+models:
+  - google-antigravity/claude-opus-4-6-thinking    # Free (thinking mode)
+  - google-antigravity/claude-opus-4-6              # Free (non-thinking mode)
+```
+
+That's it. One Antigravity OAuth account, two model variants. Claude Opus 4.6 in thinking mode handles complex reasoning and multi-step tasks. The non-thinking variant kicks in as a fallback for simpler requests or when the thinking model is rate-limited.
+
+In practice, this handles 100% of my requests. Four agents, running 24/7, all on free models. The system just... works. For free.
+
+## Multi-Channel Routing
+
+The messaging setup was where things got genuinely clever. I have:
+
+- A **Telegram bot** for my personal use
+- A **WhatsApp bot** that both my mom and I use
+
+![Channel Routing](/blog/multi-agent-vps/channel-routing.png)
+
+The routing logic is simple but powerful: any WhatsApp message from my mom's number automatically routes to Rahma. No commands, no menus, no confusion. She opens WhatsApp, sends a message, and Rahma responds in gentle Bahasa Indonesia. My mom doesn't know or care that there are four agents — she just talks to "her" assistant.
+
+For security, I set up a WhatsApp allowlist policy so only approved numbers can interact with the system.
+
+## The Architecture
+
+Here's how everything fits together:
+
+![System Architecture](/blog/multi-agent-vps/architecture.png)
+
+## The Challenges (And There Were Many)
+
+Two days of building means two days of debugging. Here's what bit me:
+
+### 1. WhatsApp Users Can't Send Slash Commands
+
+OpenClaw uses slash commands for system operations like `/compact` (to compress conversation history and free up context). But WhatsApp doesn't support slash commands the way Telegram does — my mom certainly isn't going to type `/compact` into her chat.
+
+The fix: a cron job that auto-compacts every two hours. No human intervention needed.
+
+### 2. Cron Jobs With "Announce" Delivery Are Tricky
+
+When setting up Rahma's daily 5 AM Quran reflection, I used OpenClaw's `announce` delivery mode. The catch: the agent must write the text directly in its response. If the agent calls a tool instead, the announce mechanism has nothing to deliver — tools return data to the agent, not to the user. It's a subtle but important distinction.
+
+### 3. Never Let an Agent Restart Its Own Gateway
+
+I learned this one the hard way. When an agent tries to restart the OpenClaw gateway from inside a task, it kills its own process mid-execution. It's like asking someone to pull the plug on their own life support — the timing just doesn't work. Gateway restarts need to happen from outside the agent.
+
+### 4. Forward-Compatible Models Aren't
+
+I noticed `gemini-3.1` listed in the Antigravity codebase and got excited. It returns a 404. The model identifiers are there for forward compatibility, but the models themselves don't exist yet. Don't chase model names in source code.
+
+### 5. Context Windows Overflow Silently
+
+Before I tuned it, agents would occasionally hit context limits and behave erratically. The fix was adding a `reserveTokensFloor` of 6,000 tokens, which triggers compaction earlier and gives the model enough breathing room to actually generate a response:
+
+```json
+{
+  "reserveTokensFloor": 6000
+}
+```
+
+Small config change, big stability improvement.
+
+## What Surprised Me
+
+Some things I didn't expect at all:
+
+**Agents spawning agents.** I described a landing page I wanted to Avicenna. He decided he wasn't the right agent for the job, spawned Conan as a sub-agent, and Conan built the page. I didn't orchestrate this — Avicenna just... delegated. Watching agents coordinate autonomously was the moment this stopped feeling like a toy and started feeling like a system.
+
+**My mom actually uses it.** Rahma sends a Quran reflection at 5 AM every day. My mom reads it, sometimes responds, and Rahma engages in a gentle conversation about the verse. This isn't a tech demo — it's something my mom genuinely values. That was the most rewarding part of the whole project.
+
+**Free models are enough.** I was prepared to spend money. I didn't have to. Claude Opus 4.6 via Antigravity OAuth handles complex reasoning, multi-step tasks, and nuanced conversation without breaking a sweat. For a personal multi-agent setup, you don't need a $200/month API bill — you need one Google account.
+
+**Personality files are the secret sauce.** The difference between a generic assistant and Rahma — who speaks with warmth and patience to my mother — isn't the model. It's the `SOUL.md` file. Investing time in writing detailed personality definitions pays off in every single interaction.
+
+## The Landing Page
+
+I even had Conan build a landing page to showcase the agents:
+
+![Landing Page](/blog/multi-agent-vps/landing-page.png)
+
+## Takeaways If You Want to Build This
+
+1. **Start with roles, not models.** Figure out what each agent *is* before you pick which model runs it. The persona design (SOUL.md, IDENTITY.md) matters more than the model selection.
+
+2. **Use Antigravity OAuth.** One Google account gives you free access to Claude Opus 4.6 — thinking and non-thinking modes. That's enough for a multi-agent personal setup. No API keys needed.
+
+3. **Design for your least technical user.** My mom can't send slash commands and doesn't know what "context compaction" means. If you want real people to use your agents, automate the maintenance (cron jobs, auto-compaction) and keep the interface invisible.
+
+4. **Expect the weird edge cases.** Agents killing their own gateway. Announce delivery modes that need raw text, not tool calls. These aren't in the docs — you find them at 2 AM when things break.
+
+5. **A $5 VPS is genuinely enough.** The agents are stateless between requests — the heavy lifting happens on the model provider's side. Your VPS just runs the gateway and routes messages. You don't need GPU, you don't need 32GB RAM. You need a Linux box and an internet connection.
+
+The whole thing took two days. The tools are open source. The models are free. The hardest part was writing good personality files and debugging cron job timing. If that sounds like a weekend project you'd enjoy — it is.
