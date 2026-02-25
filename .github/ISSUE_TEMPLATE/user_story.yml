@@ -1,0 +1,63 @@
+name: 📋 User Story
+description: Structured user story with acceptance criteria (created by Atlas)
+title: '[Story]: '
+labels: ['feat', 'needs-spec']
+body:
+  - type: markdown
+    attributes:
+      value: '**Structured user story for the engineering team.** Fill in details below.'
+  - type: textarea
+    id: story
+    attributes:
+      label: User Story
+      placeholder: 'As a [user], I want [feature] so that [benefit].'
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      placeholder: |
+        - [ ] Given [context], when [action], then [result]
+        - [ ] Given [context], when [action], then [result]
+    validations:
+      required: true
+  - type: textarea
+    id: technical
+    attributes:
+      label: Technical Notes
+      placeholder: |
+        Components affected:
+        Dependencies:
+        Risk/complexity:
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Estimated Effort
+      options:
+        - S (< 1 hour)
+        - M (1-4 hours)
+        - L (4-8 hours)
+        - XL (> 8 hours)
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 - Critical
+        - P1 - High
+        - P2 - Medium
+        - P3 - Low
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Assigned Agent
+      options:
+        - 🔧 Conan (Engineering)
+        - ✍️ Rewind (Writing)
+        - 📋 Atlas (Planning)
+        - 🤝 Avicenna (General)
