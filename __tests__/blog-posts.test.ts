@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
@@ -86,7 +86,10 @@ describe('Blog Posts - Bilingual Validation', () => {
 
     // Each group should have at least 2 locales
     groups.forEach((groupPosts, slug) => {
-      expect(groupPosts.length, `canonicalSlug "${slug}" should have multiple locales`).toBeGreaterThanOrEqual(2);
+      expect(
+        groupPosts.length,
+        `canonicalSlug "${slug}" should have multiple locales`
+      ).toBeGreaterThanOrEqual(2);
     });
   });
 
