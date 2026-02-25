@@ -4,6 +4,8 @@ publishedAt: "2026-02-25"
 summary: "Four AI agents, one cheap VPS, zero cost. How I set up a multi-agent AI system with OpenClaw — including one that sends daily Quran reflections to my mom."
 image: "/blog/multi-agent-vps/architecture.png"
 tags: ["AI", "OpenClaw", "Multi-Agent", "DevOps"]
+locale: "en"
+canonicalSlug: "multi-agent-vps"
 ---
 
 Last weekend, I set up four AI agents on a single cheap VPS. They talk to me on Telegram, talk to my mom on WhatsApp, write blog posts, build landing pages, and coordinate with each other — all running on free-tier models. It took two days, a lot of YAML editing, and a few spectacular failures. Here's the whole story.
@@ -32,21 +34,21 @@ I created four agents, each with a distinct role and personality:
 
 The key insight: each agent has its own `SOUL.md` and `IDENTITY.md` files that define *who they are*, not just what they do. Rahma doesn't just "answer Islamic questions" — she's patient, gentle, and speaks to my mom the way a kind companion would. These personality files matter more than I expected.
 
-## The Model Strategy (AKA How I Pay $0)
+## The Model Strategy (AKA How I Pay Almost Nothing)
 
-Here's where it gets interesting. Running four agents sounds expensive, but my actual cost so far? Zero dollars on model inference.
+Here's where it gets interesting. Running four agents sounds expensive, but my actual cost? Just a Google AI Pro subscription.
 
-The secret: **Google Antigravity OAuth**. It gives you free access to powerful models through a single Google account — no API keys, no credit cards, no usage limits that matter for personal use.
+The key: **Google Antigravity OAuth**. With a Google AI Pro subscription, you get access to powerful models through your Google account — no separate API keys, no per-token billing, no usage limits that matter for personal use.
 
 ```yaml
 models:
-  - google-antigravity/claude-opus-4-6-thinking    # Free (thinking mode)
-  - google-antigravity/claude-opus-4-6              # Free (non-thinking mode)
+  - google-antigravity/claude-opus-4-6-thinking    # Antigravity (thinking mode)
+  - google-antigravity/claude-opus-4-6              # Antigravity (non-thinking mode)
 ```
 
 That's it. One Antigravity OAuth account, two model variants. Claude Opus 4.6 in thinking mode handles complex reasoning and multi-step tasks. The non-thinking variant kicks in as a fallback for simpler requests or when the thinking model is rate-limited.
 
-In practice, this handles 100% of my requests. Four agents, running 24/7, all on free models. The system just... works. For free.
+In practice, this handles 100% of my requests. Four agents, running 24/7, all through one subscription. No per-token costs, no surprise bills.
 
 ## Multi-Channel Routing
 
@@ -109,7 +111,7 @@ Some things I didn't expect at all:
 
 **My mom actually uses it.** Rahma sends a Quran reflection at 5 AM every day. My mom reads it, sometimes responds, and Rahma engages in a gentle conversation about the verse. This isn't a tech demo — it's something my mom genuinely values. That was the most rewarding part of the whole project.
 
-**Free models are enough.** I was prepared to spend money. I didn't have to. Claude Opus 4.6 via Antigravity OAuth handles complex reasoning, multi-step tasks, and nuanced conversation without breaking a sweat. For a personal multi-agent setup, you don't need a $200/month API bill — you need one Google account.
+**Free models are enough.** I was prepared to spend a lot. I didn't have to. Claude Opus 4.6 via Antigravity OAuth handles complex reasoning, multi-step tasks, and nuanced conversation without breaking a sweat. For a personal multi-agent setup, you don't need a $200/month API bill — you need one Google AI Pro subscription.
 
 **Personality files are the secret sauce.** The difference between a generic assistant and Rahma — who speaks with warmth and patience to my mother — isn't the model. It's the `SOUL.md` file. Investing time in writing detailed personality definitions pays off in every single interaction.
 
@@ -123,7 +125,7 @@ I even had Conan build a landing page to showcase the agents:
 
 1. **Start with roles, not models.** Figure out what each agent *is* before you pick which model runs it. The persona design (SOUL.md, IDENTITY.md) matters more than the model selection.
 
-2. **Use Antigravity OAuth.** One Google account gives you free access to Claude Opus 4.6 — thinking and non-thinking modes. That's enough for a multi-agent personal setup. No API keys needed.
+2. **Use Antigravity OAuth.** A Google AI Pro subscription gives you access to Claude Opus 4.6 — thinking and non-thinking modes. That's enough for a multi-agent personal setup. No separate API keys, no per-token billing.
 
 3. **Design for your least technical user.** My mom can't send slash commands and doesn't know what "context compaction" means. If you want real people to use your agents, automate the maintenance (cron jobs, auto-compaction) and keep the interface invisible.
 

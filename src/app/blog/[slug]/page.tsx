@@ -1,7 +1,7 @@
 
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getBlogPosts, formatDate } from '@/lib/mdx';
+import { getBlogPosts, getAlternateLocales, formatDate } from '@/lib/mdx';
 import { Navbar } from '@/components/navbar';
 import Link from 'next/link';
 import { ArrowLeft, Clock } from 'lucide-react';
@@ -11,6 +11,7 @@ import { TableOfContents } from '@/components/table-of-contents';
 import { Web3Background } from '@/components/web3-background';
 import rehypeSlug from 'rehype-slug';
 import { calculateReadingTime } from '@/lib/utils/reading-time';
+import { LanguageSwitcher } from '@/components/language-switcher';
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -56,6 +57,8 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
   }
 
   const readingTime = calculateReadingTime(post.content);
+  const alternateLocales = getAlternateLocales(params.slug);
+  const currentLocale = post.metadata.locale || 'en';
 
   return (
     <div className="flex min-h-screen flex-col font-sans relative overflow-hidden">
@@ -70,10 +73,16 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_250px] gap-12">
           <article>
             <div className="space-y-4 mb-8 border-b pb-8">
-              <div className="flex flex-wrap gap-2">
-                {post.metadata.tags?.map((tag) => (
-                  <Badge key={tag} variant="secondary">{tag}</Badge>
-                ))}
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {post.metadata.tags?.map((tag) => (
+                    <Badge key={tag} variant="secondary">{tag}</Badge>
+                  ))}
+                </div>
+                <LanguageSwitcher
+                  currentLocale={currentLocale}
+                  availableLocales={alternateLocales}
+                />
               </div>
               <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-balance bg-gradient-to-r from-white via-primary to-purple-400 bg-clip-text text-transparent">
                 {post.metadata.title}

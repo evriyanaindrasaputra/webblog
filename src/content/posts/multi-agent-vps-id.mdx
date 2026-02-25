@@ -4,6 +4,8 @@ publishedAt: "2026-02-25"
 summary: "Empat AI agent, satu VPS, nol biaya model. Cara saya setup sistem multi-agent AI dengan OpenClaw — termasuk satu yang kirim tadabbur harian ke ibu saya."
 image: "/blog/multi-agent-vps/architecture.png"
 tags: ["AI", "OpenClaw", "Multi-Agent", "DevOps"]
+locale: "id"
+canonicalSlug: "multi-agent-vps"
 ---
 
 Dua hari. Satu VPS. Empat AI agent dengan kepribadian berbeda. Nol biaya model.
@@ -66,22 +68,22 @@ Di OpenClaw, setiap agent punya file `SOUL.md` dan `IDENTITY.md` yang mendefinis
 
 Perbedaan ini kelihatan banget di output. Agent dengan kepribadian yang well-defined menghasilkan respons yang jauh lebih konsisten dan natural dibanding agent yang cuma dikasih daftar instruksi.
 
-## Strategi Model: Nol Rupiah untuk AI
+## Strategi Model: Biaya Minimal untuk AI
 
-Ini bagian yang paling bikin saya excited. Seluruh sistem empat agent ini berjalan *gratis* — untuk model AI-nya.
+Ini bagian yang paling bikin saya excited. Seluruh sistem empat agent ini berjalan dengan biaya minimal — cukup langganan Google AI Pro.
 
-Rahasianya: **Google Antigravity OAuth**. Cukup satu akun Google, dan Anda dapat akses gratis ke Claude Opus 4.6 — tanpa API key, tanpa kartu kredit, tanpa limit yang berarti untuk pemakaian personal.
+Rahasianya: **Google Antigravity OAuth**. Dengan berlangganan Google AI Pro, Anda dapat akses ke model-model powerful melalui akun Google — tanpa API key terpisah, tanpa biaya per-token, tanpa limit yang berarti untuk pemakaian personal.
 
 ```yaml
 # Model yang dipakai (per agent)
 models:
-  - google-antigravity/claude-opus-4-6-thinking    # Gratis (thinking mode)
-  - google-antigravity/claude-opus-4-6              # Gratis (non-thinking mode)
+  - google-antigravity/claude-opus-4-6-thinking    # Antigravity (thinking mode)
+  - google-antigravity/claude-opus-4-6              # Antigravity (non-thinking mode)
 ```
 
 Sesimpel itu. Satu akun Antigravity OAuth, dua varian model. Claude Opus 4.6 dalam thinking mode untuk reasoning kompleks dan tugas multi-step. Varian non-thinking sebagai fallback untuk request yang lebih simpel atau ketika model thinking kena rate limit.
 
-Dalam praktiknya, ini handle 100% request saya. Empat agent, berjalan 24/7, semuanya di model gratis.
+Dalam praktiknya, ini handle 100% request saya. Empat agent, berjalan 24/7, semuanya lewat satu langganan. Tanpa biaya per-token, tanpa tagihan mengejutkan.
 
 ## Multi-Channel Routing
 
@@ -143,7 +145,7 @@ Beberapa momen "wow" yang nggak saya antisipasi:
 
 **Konsistensi Rahma.** Setiap pagi jam 5, ibu saya dapat pesan refleksi Quran. Bukan copy-paste yang sama setiap hari. Setiap pesan unik, thoughtful, dan ditulis dengan bahasa yang lembut. Ibu saya senang. Itu... itu worth more than any technical achievement di project ini.
 
-**Nol biaya model.** Empat agent berjalan 24/7, dan saya belum bayar sepeser pun untuk API model. Satu akun Antigravity OAuth — itu saja yang diperlukan.
+**Biaya minimal.** Empat agent berjalan 24/7, dan saya cuma perlu satu langganan Google AI Pro — tanpa biaya per-token tambahan.
 
 ## Landing Page
 
@@ -157,7 +159,7 @@ Beberapa pelajaran actionable dari 2 hari eksperimen ini:
 
 1. **Mulai dari "siapa", bukan "apa."** Definisikan kepribadian agent sebelum definisikan tugasnya. File `SOUL.md` lebih penting dari daftar tools.
 
-2. **Pakai Antigravity OAuth.** Satu akun Google memberikan akses gratis ke Claude Opus 4.6 — mode thinking dan non-thinking. Cukup untuk setup multi-agent personal. Tanpa API key.
+2. **Pakai Antigravity OAuth.** Langganan Google AI Pro memberikan akses ke Claude Opus 4.6 — mode thinking dan non-thinking. Cukup untuk setup multi-agent personal. Tanpa API key terpisah, tanpa biaya per-token.
 
 3. **Pikirkan user experience non-teknis.** Kalau agent Anda akan dipakai orang yang nggak tech-savvy (seperti ibu saya), semua harus otomatis. Nggak ada slash command. Nggak ada manual compaction. Nggak ada "coba restart."
 
@@ -167,6 +169,6 @@ Beberapa pelajaran actionable dari 2 hari eksperimen ini:
 
 ---
 
-Dua hari. Empat agent. Nol biaya model. Satu ibu yang senang dapat kiriman tadabbur setiap pagi.
+Dua hari. Empat agent. Satu langganan AI Pro. Satu ibu yang senang dapat kiriman tadabbur setiap pagi.
 
 Kalau itu bukan ROI yang bagus, saya nggak tahu apa lagi.
