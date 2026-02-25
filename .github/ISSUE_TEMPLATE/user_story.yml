@@ -57,7 +57,7 @@ body:
     attributes:
       label: Assigned Agent
       options:
-        - 🔧 Conan (Engineering)
-        - ✍️ Rewind (Writing)
-        - 📋 Atlas (Planning)
+        - 🔧 Jazari (Engineering)
+        - ✍️ Jahiz (Writing)
+        - 📋 Khawarizmi (Planning)
         - 🤝 Avicenna (General)

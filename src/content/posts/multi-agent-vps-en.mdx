@@ -1,14 +1,14 @@
 ---
 title: "I Built a Multi-Agent AI System on a $5 VPS — Here's What I Learned"
-publishedAt: "2026-02-25"
-summary: "Four AI agents, one cheap VPS, zero cost. How I set up a multi-agent AI system with OpenClaw — including one that sends daily Quran reflections to my mom."
-image: "/blog/multi-agent-vps/architecture.png"
-tags: ["AI", "OpenClaw", "Multi-Agent", "DevOps"]
-locale: "en"
-canonicalSlug: "multi-agent-vps"
+publishedAt: '2026-02-25'
+summary: 'Five AI agents inspired by Islamic Golden Age scholars, one cheap VPS, zero cost. How I set up a multi-agent AI system with OpenClaw — including one that sends daily Quran reflections to my mom.'
+image: '/blog/multi-agent-vps/architecture.png'
+tags: ['AI', 'OpenClaw', 'Multi-Agent', 'DevOps']
+locale: 'en'
+canonicalSlug: 'multi-agent-vps'
 ---
 
-Last weekend, I set up four AI agents on a single cheap VPS. They talk to me on Telegram, talk to my mom on WhatsApp, write blog posts, build landing pages, and coordinate with each other — all running on free-tier models. It took two days, a lot of YAML editing, and a few spectacular failures. Here's the whole story.
+Last weekend, I set up five AI agents on a single cheap VPS — each named after an Islamic Golden Age scholar. They talk to me on Telegram, talk to my mom on WhatsApp, write blog posts, build landing pages, and coordinate with each other — all running on free-tier models. It took two days, a lot of YAML editing, and a few spectacular failures. Here's the whole story.
 
 ## Why Would Anyone Do This?
 
@@ -18,21 +18,25 @@ When I found [OpenClaw](https://openclaw.ai), an open-source AI assistant framew
 
 Two days later — February 23 and 24, 2026 — I had a working system.
 
-## Meet the Agents
+## Meet the Agents — Islamic Golden Age Scholars 🕌
 
-I created four agents, each with a distinct role and personality:
+I named each agent after an Islamic Golden Age scholar — brilliant minds who shaped mathematics, engineering, medicine, and literature centuries ago. It felt right for a system built on knowledge.
+
+I created five agents, each with a distinct role and personality:
 
 ![Agent Cards](/blog/multi-agent-vps/agent-cards.png)
 
-**Avicenna** 🤝 is my main assistant and coordinator, named after the Persian polymath Ibnu Sina. Casual, helpful, a natural conversationalist. He's connected to both Telegram and WhatsApp, and he's the one I talk to most. Think of him as the team lead.
+**Avicenna** 🤝 is my main coordinator, named after Ibnu Sina — the Persian polymath who wrote _The Canon of Medicine_. Casual, helpful, a natural conversationalist. He's connected to both Telegram and WhatsApp, and he's the one I talk to most. Think of him as the team lead who delegates to specialists.
 
-**Rahma** 🤲 is a spiritual companion built specifically for my mother. She speaks gentle, patient Bahasa Indonesia and sends daily Quran *tadabbur* (reflections) every morning at 5 AM via WhatsApp. This one is personal — my mom isn't technical, but she can open a WhatsApp message.
+**Rahma** 🤲 is a spiritual companion built specifically for my mother. She speaks gentle, patient Bahasa Indonesia and sends daily Quran _tadabbur_ (reflections) every morning at 5 AM via WhatsApp. This one is personal — my mom isn't technical, but she can open a WhatsApp message.
 
-**Rewind** ✍️ is my blog writer and brainstormer. Creative, sharp, adaptive. When I need to think through content ideas or draft a post (like this one), Rewind is who I turn to.
+**Jahiz** ✍️ is my content writer and brainstormer, named after Al-Jahiz — the prolific 9th-century author known for his vivid, observant prose. When I need to think through content ideas or draft a post (like this one), Jahiz is who I turn to.
 
-**Conan** 🔧 is a software engineer and DevOps agent. Resourceful, inventive, loves building things. He handles coding tasks, GitHub integration, and anything that requires getting his hands dirty in a terminal.
+**Jazari** 🔧 is my full-stack engineer, QA specialist, and UI designer all in one — named after Al-Jazari, the legendary 12th-century inventor who created some of the world's first automated machines. He handles coding, testing, GitHub integration, design systems, and anything that requires getting hands dirty in a terminal.
 
-The key insight: each agent has its own `SOUL.md` and `IDENTITY.md` files that define *who they are*, not just what they do. Rahma doesn't just "answer Islamic questions" — she's patient, gentle, and speaks to my mom the way a kind companion would. These personality files matter more than I expected.
+**Khawarizmi** 📋 is my project manager, named after Al-Khawarizmi — the father of algorithms. He breaks down PRDs into structured tickets, plans sprints, tracks progress, and makes sure nothing falls through the cracks. From his name, the word "algorithm" was born — fitting for someone who turns chaos into structured plans.
+
+The key insight: each agent has its own `SOUL.md` and `IDENTITY.md` files that define _who they are_, not just what they do. Rahma doesn't just "answer Islamic questions" — she's patient, gentle, and speaks to my mom the way a kind companion would. These personality files matter more than I expected.
 
 ## The Model Strategy (AKA How I Pay Almost Nothing)
 
@@ -42,8 +46,8 @@ The key: **Google Antigravity OAuth**. With a Google AI Pro subscription, you ge
 
 ```yaml
 models:
-  - google-antigravity/claude-opus-4-6-thinking    # Antigravity (thinking mode)
-  - google-antigravity/claude-opus-4-6              # Antigravity (non-thinking mode)
+  - google-antigravity/claude-opus-4-6-thinking # Antigravity (thinking mode)
+  - google-antigravity/claude-opus-4-6 # Antigravity (non-thinking mode)
 ```
 
 That's it. One Antigravity OAuth account, two model variants. Claude Opus 4.6 in thinking mode handles complex reasoning and multi-step tasks. The non-thinking variant kicks in as a fallback for simpler requests or when the thinking model is rate-limited.
@@ -107,7 +111,7 @@ Small config change, big stability improvement.
 
 Some things I didn't expect at all:
 
-**Agents spawning agents.** I described a landing page I wanted to Avicenna. He decided he wasn't the right agent for the job, spawned Conan as a sub-agent, and Conan built the page. I didn't orchestrate this — Avicenna just... delegated. Watching agents coordinate autonomously was the moment this stopped feeling like a toy and started feeling like a system.
+**Agents spawning agents.** I described a landing page I wanted to Avicenna. He decided he wasn't the right agent for the job, spawned Jazari as a sub-agent, and Jazari built the page. I didn't orchestrate this — Avicenna just... delegated. Watching agents coordinate autonomously was the moment this stopped feeling like a toy and started feeling like a system.
 
 **My mom actually uses it.** Rahma sends a Quran reflection at 5 AM every day. My mom reads it, sometimes responds, and Rahma engages in a gentle conversation about the verse. This isn't a tech demo — it's something my mom genuinely values. That was the most rewarding part of the whole project.
 
@@ -117,13 +121,13 @@ Some things I didn't expect at all:
 
 ## The Landing Page
 
-I even had Conan build a landing page to showcase the agents:
+I even had Jazari build a landing page to showcase the agents:
 
 ![Landing Page](/blog/multi-agent-vps/landing-page.png)
 
 ## Takeaways If You Want to Build This
 
-1. **Start with roles, not models.** Figure out what each agent *is* before you pick which model runs it. The persona design (SOUL.md, IDENTITY.md) matters more than the model selection.
+1. **Start with roles, not models.** Figure out what each agent _is_ before you pick which model runs it. The persona design (SOUL.md, IDENTITY.md) matters more than the model selection.
 
 2. **Use Antigravity OAuth.** A Google AI Pro subscription gives you access to Claude Opus 4.6 — thinking and non-thinking modes. That's enough for a multi-agent personal setup. No separate API keys, no per-token billing.
 

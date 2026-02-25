@@ -1,14 +1,14 @@
 ---
-title: "Membangun Sistem Multi-Agent AI di VPS Murah — Ini yang Saya Pelajari"
-publishedAt: "2026-02-25"
-summary: "Empat AI agent, satu VPS, nol biaya model. Cara saya setup sistem multi-agent AI dengan OpenClaw — termasuk satu yang kirim tadabbur harian ke ibu saya."
-image: "/blog/multi-agent-vps/architecture.png"
-tags: ["AI", "OpenClaw", "Multi-Agent", "DevOps"]
-locale: "id"
-canonicalSlug: "multi-agent-vps"
+title: 'Membangun Sistem Multi-Agent AI di VPS Murah — Ini yang Saya Pelajari'
+publishedAt: '2026-02-25'
+summary: 'Lima AI agent terinspirasi sarjana Islamic Golden Age, satu VPS, nol biaya model. Cara saya setup sistem multi-agent AI dengan OpenClaw — termasuk satu yang kirim tadabbur harian ke ibu saya.'
+image: '/blog/multi-agent-vps/architecture.png'
+tags: ['AI', 'OpenClaw', 'Multi-Agent', 'DevOps']
+locale: 'id'
+canonicalSlug: 'multi-agent-vps'
 ---
 
-Dua hari. Satu VPS. Empat AI agent dengan kepribadian berbeda. Nol biaya model.
+Dua hari. Satu VPS. Lima AI agent dengan kepribadian berbeda — masing-masing dinamai sarjana dari Islamic Golden Age. Nol biaya model.
 
 Kedengarannya kayak clickbait? Saya juga bakal skeptis kalau baca judul itu. Tapi ini beneran kejadian — 23-24 Februari 2026, saya duduk di depan terminal dan membangun sistem multi-agent AI yang sekarang jalan 24/7 di sebuah VPS Linux. Salah satu agent-nya bahkan kirim refleksi Al-Quran ke ibu saya setiap jam 5 pagi.
 
@@ -16,15 +16,17 @@ Mari saya ceritakan gimana prosesnya — termasuk semua kesalahan bodoh yang say
 
 ## Kenapa Multi-Agent?
 
-Saya sudah lama pakai AI assistant untuk berbagai keperluan. Tapi satu agent untuk semua kebutuhan itu kayak punya satu pisau Swiss Army untuk masak, berkebun, dan operasi jantung sekaligus. *Technically* bisa, tapi hasilnya... ya begitulah.
+Saya sudah lama pakai AI assistant untuk berbagai keperluan. Tapi satu agent untuk semua kebutuhan itu kayak punya satu pisau Swiss Army untuk masak, berkebun, dan operasi jantung sekaligus. _Technically_ bisa, tapi hasilnya... ya begitulah.
 
 Yang saya butuhkan:
+
 - Asisten pribadi yang bisa diajak ngobrol natural via Telegram dan WhatsApp
 - Teman spiritual untuk ibu saya yang nyaman pakai WhatsApp
 - Penulis konten yang paham style saya
-- Engineer yang bisa ngoding dan handle DevOps
+- Engineer yang bisa ngoding, testing, dan handle UI
+- Project manager yang bisa breakdown requirement jadi tiket
 
-Empat peran. Empat kepribadian. Satu framework.
+Lima peran. Lima kepribadian. Satu framework.
 
 ## Framework: OpenClaw
 
@@ -32,15 +34,17 @@ Saya pakai [OpenClaw](https://openclaw.ai) — framework AI assistant open-sourc
 
 Setup-nya straightforward. Install di VPS, konfigurasi gateway, definisikan agent — dan mereka hidup.
 
-## Empat Agent, Empat Kepribadian
+## Lima Agent, Lima Sarjana — Islamic Golden Age 🕌
+
+Saya menamakan setiap agent berdasarkan sarjana dari Islamic Golden Age — para jenius yang membentuk matematika, engineering, kedokteran, dan sastra berabad-abad lalu.
 
 ![Agent Cards](/blog/multi-agent-vps/agent-cards.png)
 
 ### 1. Avicenna 🤝 — Si Koordinator
 
-Terinspirasi dari Ibnu Sina. Avicenna adalah asisten utama saya — santai, helpful, dan ngobrol natural. Dia terhubung ke Telegram dan WhatsApp, jadi saya bisa chat dari mana aja.
+Terinspirasi dari Ibnu Sina, sang polymath yang menulis _The Canon of Medicine_. Avicenna adalah asisten utama saya — santai, helpful, dan ngobrol natural. Dia terhubung ke Telegram dan WhatsApp, jadi saya bisa chat dari mana aja.
 
-Tapi yang bikin Avicenna spesial bukan cuma dia bisa jawab pertanyaan. Dia bisa *mendelegasikan*. Butuh landing page? Avicenna spawn Conan (agent engineer) sebagai sub-agent untuk mengerjakannya. Saya cukup bilang ke Avicenna apa yang saya mau, dan dia orkestrasi sisanya.
+Tapi yang bikin Avicenna spesial bukan cuma dia bisa jawab pertanyaan. Dia bisa _mendelegasikan_. Butuh landing page? Avicenna spawn Jazari (agent engineer) sebagai sub-agent untuk mengerjakannya. Saya cukup bilang ke Avicenna apa yang saya mau, dan dia orkestrasi sisanya.
 
 ### 2. Rahma 🤲 — Teman Spiritual Ibu
 
@@ -48,23 +52,27 @@ Ini agent yang paling personal. Ibu saya sudah sepuh dan suka baca tadabbur Al-Q
 
 Setiap jam 5 pagi, Rahma mengirim refleksi Al-Quran harian ke WhatsApp ibu saya. Otomatis. Konsisten. Tanpa saya harus ingat-ingat.
 
-Channel binding-nya saya set supaya setiap pesan WhatsApp dari nomor ibu saya *selalu* diarahkan ke Rahma — bukan ke Avicenna atau agent lain. Plus, WhatsApp pakai kebijakan allowlist untuk keamanan, jadi nggak sembarang nomor bisa interact.
+Channel binding-nya saya set supaya setiap pesan WhatsApp dari nomor ibu saya _selalu_ diarahkan ke Rahma — bukan ke Avicenna atau agent lain. Plus, WhatsApp pakai kebijakan allowlist untuk keamanan, jadi nggak sembarang nomor bisa interact.
 
-### 3. Rewind ✍️ — Si Penulis
+### 3. Jahiz ✍️ — Si Penulis
 
-Rewind itu penulis blog dan brainstormer. Kreatif, tajam, adaptif. Kalau saya butuh draft artikel (termasuk artikel yang sedang Anda baca ini), Rewind yang handle.
+Terinspirasi dari Al-Jahiz, sastrawan dan penulis prolifik abad ke-9 yang dikenal karena gaya tulisnya yang hidup dan penuh observasi. Jahiz itu penulis blog dan brainstormer saya. Kreatif, tajam, adaptif. Kalau saya butuh draft artikel (termasuk artikel yang sedang Anda baca ini), Jahiz yang handle.
 
-### 4. Conan 🔧 — Si Engineer
+### 4. Jazari 🔧 — Si Engineer
 
-Software engineer dan DevOps dalam satu paket. Resourceful, inventif, dan suka ngoding. Conan handle tugas coding, integrasi GitHub, dan build apa pun yang perlu di-build.
+Terinspirasi dari Al-Jazari, insinyur dan inventor legendaris abad ke-12 yang menciptakan mesin-mesin otomatis pertama di dunia. Jazari adalah full-stack engineer, QA specialist, dan UI designer dalam satu paket. Dia handle coding, testing, GitHub integration, design system, dan build apa pun yang perlu di-build.
 
-Momen favorit saya: saya deskripsikan landing page yang saya mau ke Avicenna, Avicenna spawn Conan sebagai sub-agent, dan Conan membangun halaman itu secara lengkap. Saya tinggal review hasilnya.
+Momen favorit saya: saya deskripsikan landing page yang saya mau ke Avicenna, Avicenna spawn Jazari sebagai sub-agent, dan Jazari membangun halaman itu secara lengkap. Saya tinggal review hasilnya.
+
+### 5. Khawarizmi 📋 — Si Project Manager
+
+Terinspirasi dari Al-Khawarizmi, bapak algoritma dan aljabar — dari namanya lahir kata "algorithm." Khawarizmi breakdown PRD jadi user stories terstruktur, bikin GitHub Issues dengan label dan prioritas, planning sprint, dan track progress. Dia yang bikin chaos jadi terorganisir.
 
 ## Kepribadian Itu Bukan Gimmick
 
 Ini pelajaran penting yang mau saya tekankan: **kepribadian agent itu bukan sekadar flavor text.**
 
-Di OpenClaw, setiap agent punya file `SOUL.md` dan `IDENTITY.md` yang mendefinisikan *siapa* mereka — bukan cuma *apa* yang mereka lakukan. Rahma nggak cuma "agent yang kirim ayat Quran." Rahma adalah teman yang sabar, lembut, dan tahu kapan harus mendengarkan.
+Di OpenClaw, setiap agent punya file `SOUL.md` dan `IDENTITY.md` yang mendefinisikan _siapa_ mereka — bukan cuma _apa_ yang mereka lakukan. Rahma nggak cuma "agent yang kirim ayat Quran." Rahma adalah teman yang sabar, lembut, dan tahu kapan harus mendengarkan.
 
 Perbedaan ini kelihatan banget di output. Agent dengan kepribadian yang well-defined menghasilkan respons yang jauh lebih konsisten dan natural dibanding agent yang cuma dikasih daftar instruksi.
 
@@ -77,8 +85,8 @@ Rahasianya: **Google Antigravity OAuth**. Dengan berlangganan Google AI Pro, And
 ```yaml
 # Model yang dipakai (per agent)
 models:
-  - google-antigravity/claude-opus-4-6-thinking    # Antigravity (thinking mode)
-  - google-antigravity/claude-opus-4-6              # Antigravity (non-thinking mode)
+  - google-antigravity/claude-opus-4-6-thinking # Antigravity (thinking mode)
+  - google-antigravity/claude-opus-4-6 # Antigravity (non-thinking mode)
 ```
 
 Sesimpel itu. Satu akun Antigravity OAuth, dua varian model. Claude Opus 4.6 dalam thinking mode untuk reasoning kompleks dan tugas multi-step. Varian non-thinking sebagai fallback untuk request yang lebih simpel atau ketika model thinking kena rate limit.
@@ -90,6 +98,7 @@ Dalam praktiknya, ini handle 100% request saya. Empat agent, berjalan 24/7, semu
 ![Channel Routing](/blog/multi-agent-vps/channel-routing.png)
 
 Setup messaging-nya simpel tapi powerful. Saya punya:
+
 - **Bot Telegram** untuk personal use
 - **Bot WhatsApp** yang dipakai saya dan ibu saya
 
@@ -111,15 +120,15 @@ Solusi: cron job auto-compaction setiap 2 jam. Simple, tapi krusial. Tanpa ini, 
 
 Rahma perlu kirim tadabbur jam 5 pagi. Saya pakai cron job dengan delivery mode `announce` — artinya output agent langsung dikirim sebagai pesan ke user.
 
-Yang saya pelajari dengan cara yang menyakitkan: kalau agent merespons dengan memanggil tools (bukan menulis teks langsung), announce *nggak punya apa-apa untuk dikirim*. Hening. Nggak ada pesan.
+Yang saya pelajari dengan cara yang menyakitkan: kalau agent merespons dengan memanggil tools (bukan menulis teks langsung), announce _nggak punya apa-apa untuk dikirim_. Hening. Nggak ada pesan.
 
 Solusinya: instruksikan agent secara eksplisit dalam cron prompt untuk **menulis teks langsung**, bukan memanggil tools.
 
 ### 3. Jangan Restart Gateway dari Dalam Agent
 
-Ini kesalahan klasik yang saya buat lebih dari sekali. Agent butuh restart gateway → agent jalankan perintah restart → gateway mati → agent ikut mati karena dia *berjalan di atas gateway yang sama*.
+Ini kesalahan klasik yang saya buat lebih dari sekali. Agent butuh restart gateway → agent jalankan perintah restart → gateway mati → agent ikut mati karena dia _berjalan di atas gateway yang sama_.
 
-Kayak duduk di dahan pohon yang sedang Anda gergaji sendiri. Masalah timing yang obvious *setelah* kejadian, tapi nggak kepikiran *sebelum* kejadian.
+Kayak duduk di dahan pohon yang sedang Anda gergaji sendiri. Masalah timing yang obvious _setelah_ kejadian, tapi nggak kepikiran _sebelum_ kejadian.
 
 ### 4. Model yang Belum Ada
 
@@ -141,15 +150,15 @@ Angka 6000 cukup untuk memberikan ruang napas sebelum context window benar-benar
 
 Beberapa momen "wow" yang nggak saya antisipasi:
 
-**Agent men-spawn agent lain.** Ketika saya minta Avicenna buatkan landing page, dia nggak mencoba mengerjakannya sendiri. Dia spawn Conan sebagai sub-agent, delegasikan tugas, dan report hasilnya ke saya. Ini bukan sesuatu yang saya program secara eksplisit — ini perilaku yang muncul dari arsitektur multi-agent OpenClaw.
+**Agent men-spawn agent lain.** Ketika saya minta Avicenna buatkan landing page, dia nggak mencoba mengerjakannya sendiri. Dia spawn Jazari sebagai sub-agent, delegasikan tugas, dan report hasilnya ke saya. Ini bukan sesuatu yang saya program secara eksplisit — ini perilaku yang muncul dari arsitektur multi-agent OpenClaw.
 
 **Konsistensi Rahma.** Setiap pagi jam 5, ibu saya dapat pesan refleksi Quran. Bukan copy-paste yang sama setiap hari. Setiap pesan unik, thoughtful, dan ditulis dengan bahasa yang lembut. Ibu saya senang. Itu... itu worth more than any technical achievement di project ini.
 
-**Biaya minimal.** Empat agent berjalan 24/7, dan saya cuma perlu satu langganan Google AI Pro — tanpa biaya per-token tambahan.
+**Biaya minimal.** Lima agent berjalan 24/7, dan saya cuma perlu satu langganan Google AI Pro — tanpa biaya per-token tambahan.
 
 ## Landing Page
 
-Saya bahkan minta Conan buatkan landing page untuk showcase semua agent:
+Saya bahkan minta Jazari buatkan landing page untuk showcase semua agent:
 
 ![Landing Page](/blog/multi-agent-vps/landing-page.png)
 
@@ -169,6 +178,6 @@ Beberapa pelajaran actionable dari 2 hari eksperimen ini:
 
 ---
 
-Dua hari. Empat agent. Satu langganan AI Pro. Satu ibu yang senang dapat kiriman tadabbur setiap pagi.
+Dua hari. Lima agent. Satu langganan AI Pro. Satu ibu yang senang dapat kiriman tadabbur setiap pagi.
 
 Kalau itu bukan ROI yang bagus, saya nggak tahu apa lagi.
