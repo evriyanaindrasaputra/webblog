@@ -1,12 +1,12 @@
 
 import Link from 'next/link';
-import { getBlogPosts, formatDate } from '@/lib/mdx';
+import { getGroupedBlogPosts, formatDate } from '@/lib/mdx';
 import { Navbar } from '@/components/navbar';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Clock } from 'lucide-react';
 import { Web3Background } from '@/components/web3-background';
 import { calculateReadingTime } from '@/lib/utils/reading-time';
+import { LanguageBadges } from '@/components/language-switcher';
 
 export const metadata = {
   title: 'Blog - DevPortfolio',
@@ -14,7 +14,7 @@ export const metadata = {
 };
 
 export default function BlogPage() {
-  const posts = getBlogPosts().sort((a, b) => {
+  const posts = getGroupedBlogPosts().sort((a, b) => {
     if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
       return -1;
     }
@@ -49,6 +49,7 @@ export default function BlogPage() {
                       {post.metadata.title}
                     </h2>
                     <div className="flex items-center gap-3 text-sm text-muted-foreground whitespace-nowrap ml-4">
+                      <LanguageBadges locales={post.availableLocales} />
                       <span className="flex items-center gap-1">
                         <Clock className="w-3.5 h-3.5" />
                         {readingTime} min
